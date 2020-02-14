@@ -16,7 +16,12 @@ app.use(router);
 app.use(express.static('./public'));
 
 const port = process.env.PORT || 8000;
-if (process.env.NODE_ENV !== 'production') { require('env-cmd').config() }
+
+if (process.env.NODE_ENV === "production") {
+    app.get("/", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "views", "home.ejs"));
+    });
+  }
 
 //----- Server starts-----
 // app.listen(3000);

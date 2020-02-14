@@ -67,7 +67,16 @@
             <span style="color: #857b7b;">
               <i class="fas fa-comment"></i>
             </span>
-            0 Comments
+            <% 
+                let count = 0;
+                comments.map(comment => { 
+                    
+                    if(comment.articleId == article._id){
+                        count++;
+                    }
+                })
+            %>
+            &nbsp;&nbsp;<%= count %> Comments
           </div>
         </div>
       </div>
@@ -81,19 +90,11 @@
   <script>
     var msnry = new Masonry(".grid", {});
   </script>
-  <script>
-    $(function() {
-    //   let msg = window.localStorage.getItem("user");
-    // console.log(localStorage.getItem('user'));
-    //   if (msg !== "" && msg !== null) {
-    //     toastr.success("Logged in Successfully", {
-    //       positionClass: "toast-top-center",
-    //       timeOut: "3000"
-    //     });
-    //     localStorage.removeItem('user_logged')
-    //   }
-    });
-  </script>
+  <% if(login_success !== null){ %>
+    <script>
+      toastr.success("Welcome Admin", "", {positionClass:'toast-top-full-width',timeOut: "2000"});
+    </script>
+  <% } %>
 
   <%- include('foot'); -%>
 </body>

@@ -1,5 +1,6 @@
 const User = require('../models/user');
-// const Article = require('../models/article');
+const Article = require('../models/article');
+const Comment = require('../models/comment');
 
 if (typeof localStorage === "undefined" || localStorage === null) {
     const LocalStorage = require('node-localstorage').LocalStorage;
@@ -7,16 +8,19 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   }
 
 exports.signin = async (req, res, next) => {
-    // const articles = await Article.getAll();
+    const articles = await Article.getAll();
+    const comments = await Comment.getAll();
     const user = await User.getAll().then(users => {
         return users.find((user) => user.email == req.body.email && user.password == req.body.password)
     })
     if (user) {
-        res.redirect("/")
-        // res.render("home", {user:user, articles: articles});
+        // res.redirect("/")
+        localStorage.setItem('user_logged', 'Successfully Logged In')
+        let userLoggedValue = localStorage.getItem('user_logged');
+
+        res.render("home", {user:user, articles: articles, comments: comments, login_success: userLoggedValue});
         localStorage.setItem('user', JSON.stringify(user));
-        console.log("CHECK: ",localStorage.getItem('user'));
-        toastr.success("Logged in Successfully");
+        localStorage.removeItem('user_logged');
     } else {
         res.send({
             msg: "User doesn't exsist"
