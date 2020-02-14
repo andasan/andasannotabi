@@ -1,0 +1,99 @@
+<%- include('head'); -%>
+<body>
+  <div class="wrapper">
+    <header>
+      <a href="/"><div class="logo_ant"></div></a>
+      <div class="contact">
+        <%if (user) { %>
+        <a href="/write" style="font-size: 30px; color: rgb(172, 188, 206);"
+          ><i class="fas fa-feather-alt"></i
+        ></a>
+        <a href="/logout" style="font-size: 30px; color: rgb(172, 188, 206);"
+          ><i class="fas fa-sign-out-alt"></i
+        ></a>
+        <% }else{ %>
+        <a href="/signin" style="font-size: 30px; color: rgb(172, 188, 206);"
+          ><i class="fas fa-sign-in-alt"></i
+        ></a>
+        <% } %>
+        <a
+          href="https://github.com/andasan"
+          style="font-size: 30px; color: #2D4968;"
+          ><i class="fab fa-github-alt"></i
+        ></a>
+        <a
+          href="https://www.instagram.com/andasan"
+          style="font-size: 30px; color: #2D4968;"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </header>
+    <div
+      class="grid"
+      data-masonry='{ 
+          "itemSelector": ".card-item"
+        }'
+    >
+      <% articles.map(article => { %>
+      <div class="card-item">
+        <div class="cover_image">
+          <a href="/articles/<%= article._id %>"
+            ><img src=<%= article.coverImage %> alt="cover-image" /></a
+          >
+        </div>
+        <div class="card_content">
+          <div class="card_content_title">
+            <h5>
+              <a href="/articles/<%= article._id %>"><%= article.title %></a>
+            </h5>
+          </div>
+          <p class="card_content_description">
+            <%- article.content.substring(0, 100) %>...
+            <a href="/articles/<%= article._id %>" class="waves-effect waves-teal btn-flat"><i class="fas fa-angle-double-right"></i> Read more</a>
+          </p>
+        </div>
+        <div class="card_bottom">
+          <div class="timestamp">
+            <span style="font-size: 12px; color: #857b7b;">
+              <i class="fas fa-clock"></i>
+            </span>
+            <span class="card_content_date"
+              ><%= article.published.toLocaleDateString(undefined, { year:
+              'numeric', month: 'long', day: 'numeric' }) %></span
+            >
+          </div>
+          <div class="comment_count">
+            <span style="color: #857b7b;">
+              <i class="fas fa-comment"></i>
+            </span>
+            0 Comments
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <footer>
+      <!-- &copy; Copyright 2020. Andasan -->
+    </footer>
+  </div>
+
+  <script>
+    var msnry = new Masonry(".grid", {});
+  </script>
+  <script>
+    $(function() {
+    //   let msg = window.localStorage.getItem("user");
+    // console.log(localStorage.getItem('user'));
+    //   if (msg !== "" && msg !== null) {
+    //     toastr.success("Logged in Successfully", {
+    //       positionClass: "toast-top-center",
+    //       timeOut: "3000"
+    //     });
+    //     localStorage.removeItem('user_logged')
+    //   }
+    });
+  </script>
+
+  <%- include('foot'); -%>
+</body>

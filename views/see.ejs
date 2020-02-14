@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Andasan No Tabi - <%= article.title %></title>
+    <base href="/" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/d4e1c36ab6.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header>
+        <a href="/"><div class="logo_ant"></div></a>
+        <div class="contact">
+          <%if (user) { %>
+          <a href="/write" style="font-size: 30px; color: rgb(172, 188, 206);"
+            ><i class="fas fa-feather-alt"></i
+          ></a>
+          <a href="/logout" style="font-size: 30px; color: rgb(172, 188, 206);"
+            ><i class="fas fa-sign-out-alt"></i
+          ></a>
+          <% }else{ %>
+          <a
+            href="/signin"
+            style="font-size: 30px; color: rgb(172, 188, 206);"
+            alt="login"
+            ><i class="fas fa-sign-in-alt"></i
+          ></a>
+          <% } %>
+          <a
+            href="https://github.com/andasan"
+            style="font-size: 30px; color: #2D4968;"
+            ><i class="fab fa-github-alt"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/andasan"
+            style="font-size: 30px; color: #2D4968;"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </header>
+    </div>
+    <main>
+      <div class="container">
+        <div class="cover_image_article">
+          <img src=<%= article.coverImage %> alt="cover-image" />
+        </div>
+        <div class="article_content">
+          <h2><%= article.title %></h2>
+          <p class="article_date"><%= article.published.toDateString() %></p>
+          <p>
+            <%if (user) { %>
+            <a href=<%= edit_link %> class="waves-effect waves-light btn-small"
+              ><i class="fas fa-edit"></i> Edit</a
+            >
+            <a href=<%= delete_link %> class="waves-effect waves-light red btn-small"
+              ><i class="fas fa-trash-alt"></i> Delete</a
+            >
+            <% } %>
+          </p>
+          <p class="article_content_description">
+            <%- article.content %>
+          </p>
+          <br/><br/>
+          <hr />
+          <div class="article_comments">
+            <h4>Comments</h4>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

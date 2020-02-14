@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Make a Wish - List</title>
+    <link rel='stylesheet' type='text/css' href='style.css'>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <div class=""><a href="/"><img src="logo.png" class="logo" height="100px" alt="home_logo"></a></div>
+                <h3>Ho! Ho!</h3>
+            </header>
+            <div class="left_content_list">
+                <h1>Wish List</h1>
+                <% articles.map(article => { %>
+                <div class="card-item">
+                    <div class="card_content">
+                        <div class="card_content_title">
+                            <h5><%= article.title %></h5>
+                        </div>
+                        <p class="card_content_description">
+
+                            <%= article.content %>
+                        </p>
+                        <div class="card_bottom">
+                            <div>
+                                <span class="card_content_author"><a
+                                        href="/articles/<%= article._id %>"><%= article.author %></a></span> <span
+                                    class="card_content_date"><%= article.published %></span>
+                            </div>
+
+                            <div class="card_content_votes">
+
+                                <!-- <a onclick="event.preventDefault();" href='/read/<%= article._id %>?clicked=true' id="like<%= article._id %>"><img src="thumbs-up.png" class="vote_button" alt="thumbs-up"></a><%= article.like %> Likes -->
+                                <a href='/read/<%= article._id %>?Like=ilike' id="like<%= article._id %>"><img src="thumbs-up.png" class="vote_button" alt="thumbs-up"></a><%= article.like %> Likes
+                                &nbsp;&nbsp;
+                                <a href='/read/<%= article._id %>?Like=idislike' id="dislike<%= article._id %>"><img src="thumbs-down.png" class="vote_button" alt="thumbs-down"></a><%= article.dislike %>
+                                Dislikes
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <% }) %>
+
+            </div>
+            <footer>
+                <a href="/"><img src="github_icon.png" height="30px" alt="github_logo"></a><br />
+                &copy; Copyright 2020. Andasan
+            </footer>
+        </div>
+        <video height="100%" autoplay muted loop id="bgVideo">
+            <source src="bg_video.mp4" type="video/mp4">
+        </video>
+    </div>
+
+</body>
+
+</html>
