@@ -15,8 +15,11 @@ app.use(router);
 
 app.use(express.static('./public'));
 
+const port = process.env.PORT || 8000;
+if (process.env.NODE_ENV !== 'production') { require('env-cmd').config() }
+
 //----- Server starts-----
 // app.listen(3000);
 database.mongoConnect(() => {
-    app.listen(3000);
+    app.listen(port);
 });
