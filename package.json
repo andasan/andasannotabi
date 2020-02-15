@@ -4,8 +4,7 @@
   "description": "Blog Site of Andasan's Travels",
   "main": "app.js",
   "scripts": {
-    "start": "env-cmd -f ./config/dev.env nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",

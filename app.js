@@ -18,8 +18,8 @@ app.use(express.static('./public'));
 const port = process.env.PORT || 8000;
 
 
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, "views", "home.ejs"));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 //----- Server starts-----
