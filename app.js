@@ -10,18 +10,17 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 //----- Middlewares-------
-app.use(parser.urlencoded({extended: false}));
+app.use(parser.urlencoded({ extended: false }));
 app.use(router);
 
 app.use(express.static('./public'));
 
 const port = process.env.PORT || 8000;
 
-if (process.env.NODE_ENV === "production") {
-    app.get("/", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "views", "home.ejs"));
-    });
-  }
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, "views", "home.ejs"));
+});
 
 //----- Server starts-----
 // app.listen(3000);
