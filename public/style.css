@@ -143,6 +143,7 @@ main {
 
 .grid {
     margin-top: 50px;
+    /* margin: 0 auto; */
     min-height: 100%;
     z-index: 1;
     display: flex;
@@ -194,7 +195,8 @@ h4 {
 /******** CARD **********/
 
 .card-item {
-    width: 300px;
+    width: 360px;
+    /* width: 33%; */
     position: relative;
     border-radius: 10px;
     background-color: #ffffff;
@@ -290,10 +292,26 @@ h4 {
     text-decoration: none;
 }
 
+@media screen and (max-width: 1440px) {
+    .card-item {
+        width: 333px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .card-item {
+        width: 312px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .container {
         min-height: 100%;
         width: 100%;
+    }
+
+    .card-item {
+        width: 350px;
     }
 }
 

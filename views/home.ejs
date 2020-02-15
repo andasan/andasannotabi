@@ -88,7 +88,9 @@
   </div>
 
   <script>
-    var msnry = new Masonry(".grid", {});
+    var msnry = new Masonry(".grid", {
+        horizontalOrder: true
+    });
   </script>
   <% if(login_success !== null){ %>
     <script>
