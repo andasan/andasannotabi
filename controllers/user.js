@@ -14,7 +14,6 @@ exports.signin = async (req, res, next) => {
         return users.find((user) => user.email == req.body.email && user.password == req.body.password)
     })
     if (user) {
-        // res.redirect("/")
         localStorage.setItem('user_logged', 'Successfully Logged In')
         let userLoggedValue = localStorage.getItem('user_logged');
 
