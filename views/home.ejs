@@ -29,13 +29,9 @@
         </a>
       </div>
     </header>
-    <div
-      class="grid"
-      data-masonry='{ 
-          "itemSelector": ".card-item"
-        }'
-    >
+    <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
       <% articles.map(article => { %>
+        <div class="grid-item">
       <div class="card-item">
         <div class="cover_image">
           <a href="/articles/<%= article._id %>"
@@ -80,7 +76,9 @@
           </div>
         </div>
       </div>
+    </div>
       <% }) %>
+    
     </div>
     <footer>
       <!-- &copy; Copyright 2020. Andasan -->
@@ -89,7 +87,10 @@
 
   <script>
     var msnry = new Masonry(".grid", {
-        horizontalOrder: true
+        itemSelector: '.grid-item',
+        percentPosition: true,
+        columnWidth: '.grid-sizer',
+        gutter: 10,
     });
   </script>
   <% if(login_success !== null){ %>
